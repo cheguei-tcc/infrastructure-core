@@ -1,0 +1,9 @@
+.terraform
+
+env.example.sh
+
+terraform.tfstate*
+
+cheguei*.json
+
+instructions*
