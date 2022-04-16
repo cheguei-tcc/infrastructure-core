@@ -8,6 +8,15 @@ terraform {
     }
   }
 
+  backend "remote" {
+    hostname = "app.terraform.io"
+    organization = "cheguei"
+
+    workspaces {
+      name = "infrastructure-core"
+    }
+  }
+  
   required_version = ">= 0.14.9"
 }
 

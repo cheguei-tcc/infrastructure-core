@@ -5,6 +5,16 @@ terraform {
       version = "3.5.0"
     }
   }
+
+    backend "remote" {
+    hostname = "app.terraform.io"
+    organization = "cheguei"
+
+    workspaces {
+      name = "infrastructure-core"
+    }
+  }
+ 
 }
 
 provider "google" {
