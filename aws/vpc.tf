@@ -6,6 +6,7 @@ locals {
 
 module "vpc" {
   # DOCS - https://github.com/terraform-aws-modules/terraform-aws-vpc
+  # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc
   source  = "terraform-aws-modules/vpc/aws"
   version = "3.2.0"
 
