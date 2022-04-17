@@ -1,6 +1,6 @@
 ## Infrastructure Core
 
-This project automates all resources used by the cheguei project at cloud providers
+This project automates all resources used by the cheguei project at cloud providers.
 
 ### AWS
 

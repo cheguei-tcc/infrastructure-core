@@ -1,41 +1,51 @@
-# terraform block, configuration, contains terraform specific settings
-# that will be used to provision infrastructure
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 3.27"
-    }
+# TODO adding nginx ingress deployment
+module "eks" {
+  # https://github.com/terraform-aws-modules/terraform-aws-eks
+  # https://registry.terraform.io/modules/terraform-aws-modules/eks/aws/11.0.0?tab=inputs
+  source          = "terraform-aws-modules/eks/aws"
+  version         = "18.20.2"
+  cluster_name    = var.clustername
+  cluster_version = "1.21"
+  subnets         = module.vpc.private_subnets
+  enable_irsa     = true
+  vpc_id          = module.vpc.vpc_id
+
+  workers_group_defaults = {
+    # General Purpose SSD
+    root_volume_type = "gp2"
   }
 
-  backend "remote" {
-    hostname = "app.terraform.io"
-    organization = "cheguei"
-
-    workspaces {
-      name = "infrastructure-core"
+# DECLARING SPOT AND ON DEMAND INSTANCES
+# this lets us schedule the important workloads to the on-demand instances and scalable workloads and temporary pods to spot instances
+# using nodeselector
+  worker_groups_launch_template = [
+    {
+      name                     = "worker-group-spot-1"
+      override_instance_types  = var.spot_instance_types
+      spot_allocation_strategy = "lowest-price"
+      asg_max_size             = var.spot_max_size
+      asg_desired_capacity     = var.spot_desired_size
+      kubelet_extra_args       = "--node-labels=node.kubernetes.io/lifecycle=spot"
+    },
+  ]
+  worker_groups = [
+    {
+      name                          = "worker-group-1"
+      instance_type                 = var.ondemand_instance_type
+      # Extra lines of userdata (bash) which are appended to the default userdata code.
+      #additional_userdata           = "echo foo bar"
+      asg_desired_capacity          = var.ondemand_desired_size
+      kubelet_extra_args            = "--node-labels=node.kubernetes.io/lifecycle=ondemand"
+      # Additional list of security groups that will be attached to the autoscaling group.
+      additional_security_group_ids = [aws_security_group.worker_group_mgmt_one.id]
     }
-  }
-  
-  required_version = ">= 0.14.9"
+  ]
 }
 
-# configuration of specifics provider, in this case "aws"
-# they need aws credentials which will be loading accordling to your profile
-# its possible to use differents providers declaring more than one provider
-provider "aws" {
-  profile = "default"
-  region  = "sa-east-1"
+data "aws_eks_cluster" "cluster" {
+  name = module.eks.cluster_id
 }
 
-# defining the components of infrastructure
-# two string before the block: resource_type resource_name
-# disk size, disk image, VPC ids and so on
-resource "aws_instance" "app_server" {
-  ami           = "ami-090006f29ecb2d79a" # Ubuntu Server 20.04 LTS (HVM), SSD Volume Type - free tier
-  instance_type = "t2.micro"
-
-  tags = {
-    Name = var.instance_name
-  }
+data "aws_eks_cluster_auth" "cluster" {
+  name = module.eks.cluster_id
 }

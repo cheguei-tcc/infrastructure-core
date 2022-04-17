@@ -14,7 +14,6 @@ terraform {
       name = "infrastructure-core"
     }
   }
- 
 
   required_version = ">= 1.1.0"
 }
