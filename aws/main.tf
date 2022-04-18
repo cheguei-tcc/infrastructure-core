@@ -3,9 +3,9 @@ module "eks" {
   # https://github.com/terraform-aws-modules/terraform-aws-eks
   # https://registry.terraform.io/modules/terraform-aws-modules/eks/aws/11.0.0?tab=inputs
   source          = "terraform-aws-modules/eks/aws"
-  version         = "18.20.2"
+  version         = "<18"
   cluster_name    = var.clustername
-  cluster_version = "1.21"
+  cluster_version = "1.22"
   subnets         = module.vpc.private_subnets
   enable_irsa     = true
   vpc_id          = module.vpc.vpc_id
