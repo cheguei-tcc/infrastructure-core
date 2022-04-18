@@ -1,5 +1,7 @@
-resource "aws_security_group" "worker_group_mgmt_one" {
-  name_prefix = "worker_group_mgmt_one"
+# A security group acts as a virtual firewall for your EC2 instances to control incoming and outgoing traffic.
+
+resource "aws_security_group" "worker_group_eks" {
+  name_prefix = "worker_group_eks"
   vpc_id      = module.vpc.vpc_id
 
   ingress {

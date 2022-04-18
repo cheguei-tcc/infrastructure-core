@@ -37,7 +37,7 @@ module "eks" {
       asg_desired_capacity          = var.ondemand_desired_size
       kubelet_extra_args            = "--node-labels=node.kubernetes.io/lifecycle=ondemand"
       # Additional list of security groups that will be attached to the autoscaling group.
-      additional_security_group_ids = [aws_security_group.worker_group_mgmt_one.id]
+      additional_security_group_ids = [aws_security_group.worker_group_eks.id]
     }
   ]
 }
