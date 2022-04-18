@@ -4,7 +4,15 @@ This project automates all resources used by the cheguei project at cloud provid
 
 ### AWS
 
->todo
+-   VPC
+    -   Region => sa-east-1, with `availability zones`
+    -   Single NAT Gateway
+-   EKS WORKER GROUPS
+    -   Security Group => worker_group_eks
+    -   EC2 
+        -   On Demand => `t3a.small`
+        -   Spot => `t3.small` `t3a.small`
+
 ### GCP
 
 >todo
