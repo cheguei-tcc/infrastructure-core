@@ -1,5 +1,6 @@
 # TODO adding nginx ingress deployment
 module "eks" {
+  # https://github.com/terraform-aws-modules/terraform-aws-eks/blob/master/docs/UPGRADE-18.0.md
   # https://github.com/terraform-aws-modules/terraform-aws-eks
   # https://registry.terraform.io/modules/terraform-aws-modules/eks/aws/11.0.0?tab=inputs
   source          = "terraform-aws-modules/eks/aws"
