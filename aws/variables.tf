@@ -35,6 +35,6 @@ variable "ondemand_desired_size" {
 }
 
 variable "region" {
-  default = "sa-east-1"
+  default     = "sa-east-1"
   description = "AWS Region"
 }

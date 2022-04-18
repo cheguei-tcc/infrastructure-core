@@ -15,9 +15,9 @@ module "eks" {
     root_volume_type = "gp2"
   }
 
-# DECLARING SPOT AND ON DEMAND INSTANCES
-# this lets us schedule the important workloads to the on-demand instances and scalable workloads and temporary pods to spot instances
-# using nodeselector
+  # DECLARING SPOT AND ON DEMAND INSTANCES
+  # this lets us schedule the important workloads to the on-demand instances and scalable workloads and temporary pods to spot instances
+  # using nodeselector
   worker_groups_launch_template = [
     {
       name                     = "worker-group-spot-1"
@@ -30,12 +30,12 @@ module "eks" {
   ]
   worker_groups = [
     {
-      name                          = "worker-group-1"
-      instance_type                 = var.ondemand_instance_type
+      name          = "worker-group-1"
+      instance_type = var.ondemand_instance_type
       # Extra lines of userdata (bash) which are appended to the default userdata code.
       #additional_userdata           = "echo foo bar"
-      asg_desired_capacity          = var.ondemand_desired_size
-      kubelet_extra_args            = "--node-labels=node.kubernetes.io/lifecycle=ondemand"
+      asg_desired_capacity = var.ondemand_desired_size
+      kubelet_extra_args   = "--node-labels=node.kubernetes.io/lifecycle=ondemand"
       # Additional list of security groups that will be attached to the autoscaling group.
       additional_security_group_ids = [aws_security_group.worker_group_eks.id]
     }
