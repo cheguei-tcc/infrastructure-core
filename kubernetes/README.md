@@ -1,26 +1,26 @@
-## Kubernetes Manual Deployments
+# Kubernetes Only Once Manual Deployments
 
-### AWS IAM
+## AWS IAM
 
 > We might need to override ROLES every apply/destroy of EKS infrastructure, retrieving from: `kubectl describe configmap aws-auth -n kube-system` or `terraform eks aws-auth output`
 
 - kubectl apply -f aws-auth.yaml
 
-### Nginx Ingress Controler
+## Nginx Ingress Controler
 
 > TODO
 
-### Metrics Server
+## Metrics Server
 
 - kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
 
 This project automates all resources used by the cheguei project at cloud providers to provision and created a kubernetes cluster.
 
-### Dashboard
+## Dashboard
 
 - kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.5.1/aio/deploy/recommended.yaml
 
-#### Auth
+#### Authentication
 
 - kubectl config set-context --current --namespace default
 - kubectl create serviceaccount dashboard-admin-sa 
