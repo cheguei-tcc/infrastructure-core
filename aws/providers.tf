@@ -6,5 +6,5 @@ provider "kubernetes" {
 
 provider "aws" {
   region  = var.region
-  profile = "cheguei-tf"
+  profile = var.profile
 }

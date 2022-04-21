@@ -14,8 +14,8 @@ variable "spot_instance_types" {
   description = "List of instance types for SPOT instance selection"
 }
 
-variable "ondemand_instance_type" {
-  default     = "t3a.small"
+variable "ondemand_instance_types" {
+  default     = ["t3a.small"]
   description = "On Demand instance type"
 }
 
@@ -37,4 +37,9 @@ variable "ondemand_desired_size" {
 variable "region" {
   default     = "sa-east-1"
   description = "AWS Region"
+}
+
+variable "profile" {
+  default     = "cheguei-tf"
+  description = "AWS Profile"
 }
