@@ -145,7 +145,7 @@ output "eks_managed_node_groups" {
 
 output "aws_auth_configmap_yaml" {
   description = "Formatted yaml output for aws-auth configmap."
-  value       = module.eks_auth.aws_auth_configmap_yaml
+  value       = module.eks.aws_auth_configmap_yaml
 }
 
 

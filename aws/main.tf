@@ -39,25 +39,6 @@ module "eks" {
 
   # More details here:
   # https://docs.aws.amazon.com/eks/latest/userguide/add-user-role.html
-  # aws-auth configmap
-  manage_aws_auth_configmap = true
-}
-# https://github.com/aidanmelen/terraform-aws-eks-auth
-module "eks_auth" {
-  source = "aidanmelen/eks-auth/aws"
-  eks    = module.eks
-
-  map_users = [
-    {
-      userarn  = "arn:aws:iam::879051259341:user/chseki"
-      username = "chseki"
-      groups   = ["system:masters"]
-    },
-  ]
-
-    map_accounts = [
-    "879051259341",
-  ]
 }
 
 data "aws_eks_cluster" "cluster" {
