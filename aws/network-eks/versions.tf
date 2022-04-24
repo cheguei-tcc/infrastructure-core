@@ -13,6 +13,11 @@ terraform {
       source  = "hashicorp/kubernetes"
       version = ">= 2.10"
     }
+
+    tls = {
+      source  = "hashicorp/tls"
+      version = ">= 2.2"
+    }
   }
 
   backend "remote" {
@@ -20,7 +25,7 @@ terraform {
     organization = "cheguei"
 
     workspaces {
-      name = "infrastructure-core"
+      name = "network-core"
     }
   }
 
