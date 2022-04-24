@@ -17,7 +17,7 @@ variable "region" {
 }
 
 variable "profile" {
-  default     = "cheguei-tf"
+  default     = "terraform"
   type        = string
   description = "AWS Profile"
 }

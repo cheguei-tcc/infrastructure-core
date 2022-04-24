@@ -10,6 +10,8 @@ variable "cluster_name" {
   description = "Cheguei EKS Cluster"
 }
 
+# https://aws.amazon.com/pt/ec2/instance-types/
+
 variable "spot_instance_types" {
   default     = ["t3.small", "t3a.small"]
   type        = list(string)
@@ -65,7 +67,7 @@ variable "region" {
 }
 
 variable "profile" {
-  default     = "cheguei-tf"
+  default     = "terraform"
   type        = string
   description = "AWS Profile"
 }

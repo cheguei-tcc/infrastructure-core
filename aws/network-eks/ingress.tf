@@ -4,6 +4,7 @@ data "aws_route53_zone" "base_domain" {
 }
 
 # create AWS-issued SSL certificate
+# this must be manually approved if stuck
 resource "aws_acm_certificate" "eks_domain_cert" {
   domain_name               = var.dns_base_domain
   subject_alternative_names = ["*.${var.dns_base_domain}"]
@@ -42,6 +43,7 @@ resource "helm_release" "ingress_gateway" {
   chart      = var.ingress_gateway_chart_name
   repository = var.ingress_gateway_chart_repo
   version    = var.ingress_gateway_chart_version
+  namespace  = "kube-system"
 
   dynamic "set" {
     for_each = var.ingress_gateway_annotations
@@ -63,7 +65,10 @@ resource "helm_release" "ingress_gateway" {
 data "kubernetes_service" "ingress_gateway" {
   metadata {
     name = "ingress-nginx-controller"
+    namespace = "kube-system"
   }
+
+  depends_on = [helm_release.ingress_gateway]
 }
 data "aws_elb_hosted_zone_id" "elb_zone_id" {}
 resource "aws_route53_record" "eks_domain" {
