@@ -23,7 +23,7 @@ This project automates all resources used by the cheguei project at cloud provid
 #### Authentication
 
 - kubectl config set-context --current --namespace default
-- kubectl create serviceaccount dashboard-admin-sa 
+- kubectl create serviceaccount dashboard-admin-sa
 - kubectl create clusterrolebinding dashboard-admin-sa --clusterrole=cluster-admin --serviceaccount=default:dashboard-admin-sa
 - kubectl describe secrets/dashboard-admin-sa-token-ztl5j
 
