@@ -22,6 +22,16 @@ This project automates all resources used by the cheguei project at cloud provid
     -   EC2
         -   On Demand => `t3a.small`
         -   Spot => `t3.small` `t3a.small`
+-   ALB Load Balancer
+-   Route53 DNS name servers to cheguei.app and eks subdomains
+
+#### Running :scroll:
+
+To provision initial resources, such as firewall settings, virtual machines and kubernetes worker nodes and control plane:
+-   `make eks-create-infra`
+
+To create DNS records and configure nginx-ingress controller, aws load balancer and eks subdomains, them run:
+-   `make eks-create-network`
 
 ### GCP
 
