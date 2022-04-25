@@ -64,7 +64,7 @@ resource "helm_release" "ingress_gateway" {
 # create base domain for EKS Cluster
 data "kubernetes_service" "ingress_gateway" {
   metadata {
-    name = "ingress-nginx-controller"
+    name      = "ingress-nginx-controller"
     namespace = "kube-system"
   }
 
