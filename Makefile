@@ -1,7 +1,7 @@
-eks-create-infra:
+eks-apply-infra:
 	cd aws/infra-eks && terraform apply && cd ../..
 
-eks-create-config:
+eks-apply-config:
 	cd aws/network-eks && terraform apply && cd ../..
 
 eks-destroy-infra:
