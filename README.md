@@ -1,8 +1,8 @@
-## Starting Kubernetes Cluster
+# Starting Kubernetes Cluster
 
 This project automates all resources used by the cheguei project at cloud providers to provision and created a kubernetes cluster.
 
-### AWS
+## AWS
 
 #### Running :scroll:
 
@@ -35,12 +35,12 @@ To create DNS records, configure nginx-ingress controller, k8s authentication, a
 -   ALB Load Balancer
 -   Route53 DNS name servers to cheguei.app and eks subdomains
 
-### GCP
+## GCP
 
 >todo
-### AZURE
+## AZURE
 
 >todo
-### OCI
+## OCI
 
 >todo
