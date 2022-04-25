@@ -4,6 +4,15 @@ This project automates all resources used by the cheguei project at cloud provid
 
 ### AWS
 
+#### Running :scroll:
+
+To provision initial resources, such as firewall settings, virtual machines and kubernetes worker nodes and control plane:
+-   `make eks-create-infra`
+-   `aws eks update-kubeconfig --name cheguei-eks`
+
+To create DNS records, configure nginx-ingress controller, k8s authentication, aws load balancer and eks subdomains, run:
+-   `make eks-create-config`
+
 #### Prerequisites :scroll:
 
 - an AWS account with the IAM permissions listed on the EKS module documentation
@@ -25,15 +34,6 @@ This project automates all resources used by the cheguei project at cloud provid
 -   ACM certificate for eks.cheguei.app and *.eks.cheguei.app
 -   ALB Load Balancer
 -   Route53 DNS name servers to cheguei.app and eks subdomains
-
-#### Running :scroll:
-
-To provision initial resources, such as firewall settings, virtual machines and kubernetes worker nodes and control plane:
--   `make eks-create-infra`
--   `aws eks update-kubeconfig --name cheguei-eks`
-
-To create DNS records and configure nginx-ingress controller, aws load balancer and eks subdomains, them run:
--   `make eks-create-network`
 
 ### GCP
 
