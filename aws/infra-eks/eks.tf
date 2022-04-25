@@ -8,6 +8,9 @@ locals {
       desired_size   = var.ondemand_desired_size
       instance_types = var.ondemand_instance_types
 
+      network_interfaces = [{
+        delete_on_termination = true
+      }]
       bootstrap_extra_args   = "--kubelet-extra-args '--node-labels=node.kubernetes.io/lifecycle=ondemand'"
       vpc_security_group_ids = [aws_security_group.worker_group_eks.id]
     },
@@ -19,6 +22,9 @@ locals {
       instance_types = var.spot_instance_types
       capacity_type  = "SPOT"
 
+      network_interfaces = [{
+        delete_on_termination = true
+      }]
       bootstrap_extra_args   = "--kubelet-extra-args '--node-labels=node.kubernetes.io/lifecycle=spot'"
       vpc_security_group_ids = [aws_security_group.worker_group_eks.id]
     }

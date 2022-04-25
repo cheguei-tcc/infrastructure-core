@@ -8,4 +8,4 @@ eks-destroy-infra:
 	cd aws/infra-eks && terraform destroy && cd ../..
 
 eks-destroy-config:
-	cd aws/config-eks && terraform destroy && cd ../..
+	cd aws/config-eks && terraform refresh && terraform destroy && cd ../..
