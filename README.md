@@ -13,7 +13,7 @@ To provision initial resources, such as firewall settings, virtual machines and 
 To create DNS records, configure nginx-ingress controller, k8s authentication, aws load balancer and eks subdomains, run:
 -   `make eks-apply-config`
 
-#### Prerequisites :scroll:
+#### Prerequisites :pushpin:
 
 - an AWS account with the IAM permissions listed on the EKS module documentation
 - a configured AWS CLI
@@ -34,6 +34,14 @@ To create DNS records, configure nginx-ingress controller, k8s authentication, a
 -   ACM certificate for eks.cheguei.app and *.eks.cheguei.app
 -   ALB Load Balancer
 -   Route53 DNS name servers to cheguei.app and eks subdomains
+
+#### Infrastructure :classical_building:
+
+<h2 align="center">
+  <a href="https://cheguei.app/">
+    <img alt="AWS Infra" src="diagrams/eks_cluster.png"/>
+  </a>
+</h2>
 
 ## GCP
 
